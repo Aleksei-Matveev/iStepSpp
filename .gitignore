@@ -32,3 +32,6 @@
 *.dSYM/
 *.tlog
 *.tlog
+*.log
+*.idb
+BooleanProject/Debug/vc120.pdb

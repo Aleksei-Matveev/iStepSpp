@@ -50,3 +50,7 @@ Debug/FunctionProject.pdb
 Project_Lesson.v12.suo
 *.ipch
 ipch/functionproject-2acb9c92/functionproject-816c5d89.ipch
+*.pdb
+Debug/FunctionProject.pdb
+*.ilk
+Debug/FunctionProject.ilk

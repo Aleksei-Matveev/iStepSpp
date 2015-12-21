@@ -28,7 +28,7 @@ void printMass();
 {
 	StartInicializeMass();
 
-	paste_sort(20);
+	bubble_sort(20);
 	
 	printMass();
 

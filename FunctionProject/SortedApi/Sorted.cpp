@@ -2,6 +2,30 @@
 
 extern int mass[100];
 
+void bubble_sort(int size) {
+	for (int i = 0; i < size - 1; i++) {
+		for (int j = 0; j < size - i - 1; j++) {
+			if (mass[j] > mass[j + 1]) {
+				int b = mass[j];
+				mass[j] = mass[j + 1];
+				mass[j + 1] = b;
+			}
+		}
+	}
+}
+
+template <typename T> void bubble_sort(T array[], int size) {
+	for (int i = 0; i < size - 1; i++) {
+		for (int j = 0; j < size - i - 1; j++) {
+			if (array[j] > array[j + 1]) {
+				T b = array[j];
+				array[j] = array[j + 1];
+				array[j + 1] = b;
+			}
+		}
+	}
+}
+
 void paste_sort(int size) {
 	for (int j = 1; j < size - 1; j++) {
 		int key = mass[j];

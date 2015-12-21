@@ -1,3 +1,7 @@
+void bubble_sort(int size);
+
+template <typename T> void bubble_sort(T array[], int size);
+
 void paste_sort(int size);
 
 template <typename T> void paste_sort(T array[], int size);

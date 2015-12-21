@@ -62,3 +62,7 @@ Debug/FunctionProject.ilk
 Project_Lesson.v12.suo
 *.suo
 Project_Lesson.v12.suo
+*.ipch
+Project_Lesson.sdf
+*.pdb
+Debug/FunctionProject.pdb

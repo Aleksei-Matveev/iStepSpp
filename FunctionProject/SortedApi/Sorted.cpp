@@ -27,6 +27,31 @@ template <typename T> void bubble_sort(T array[], int size) {
 	}
 }
 
+// Пирамидальная сортировка
+void heapsort(int size) {
+	int i;
+
+	for (i = size / 2 - 1; i >= 0; i--)
+		shift_down(mass, i, size);
+
+	for (i = size - 1; i >= 1; i--)	{
+		swap(mass[0], mass[i]);
+		shift_down(mass, 0, i);
+	}
+}
+
+template <typename T> void heapsort(T array[], int size) {
+	int i;
+
+	for (i = size / 2 - 1; i >= 0; i--)
+		shift_down(array, i, size);
+
+	for (i = size - 1; i >= 1; i--)	{
+		swap(array[0], array[i]);
+		shift_down(array, 0, i);
+	}
+}
+
 // Сортировка вставками
 void paste_sort(int size) {
 	for (int j = 1; j < size - 1; j++) {
@@ -92,7 +117,7 @@ void shaker_sort(int size) {
 		right_idx--;
 
 		for (int idx = right_idx; idx > left_idx; idx--) {
-			if (mass[idx - 1] >  mass[idx]) {
+			if (mass[idx - 1] > mass[idx]) {
 				swap(mass[idx - 1], mass[idx]);
 			}
 		}
@@ -110,11 +135,53 @@ template <typename T> void shaker_sort(T array[], int size) {
 		right_idx--;
 
 		for (int idx = right_idx; idx > left_idx; idx--) {
-			if (array[idx - 1] >  array[idx]) {
+			if (array[idx - 1] > array[idx]) {
 				swap(array[idx - 1], array[idx]);
 			}
 		}
 		left_idx++;
+	}
+}
+
+void shift_down(int i, int j) {
+	int done = 0;
+	int maxChild;
+
+	while ((i * 2 + 1 < j) && (!done)) {
+		if (i * 2 + 1 == j - 1)
+			maxChild = i * 2 + 1;
+		else if (a[i * 2 + 1] > a[i * 2 + 2])
+			maxChild = i * 2 + 1;
+		else
+			maxChild = i * 2 + 2;
+
+		if (mass[i] < mass[maxChild]) {
+			swap(mass[i], mass[maxChild]);
+			i = maxChild;
+		}
+		else
+			done = 1;
+	}
+}
+
+template <typename T> void shift_down(T array[], int i, int j) {
+	bool done = false;
+	int maxChild;
+
+	while ((i * 2 + 1 < j) && (!done)) {
+		if (i * 2 + 1 == j - 1)
+			maxChild = i * 2 + 1;
+		else if (a[i * 2 + 1] > a[i * 2 + 2])
+			maxChild = i * 2 + 1;
+		else
+			maxChild = i * 2 + 2;
+
+		if (array[i] < array[maxChild]) {
+			swap(array[i], array[maxChild]);
+			i = maxChild;
+		}
+		else
+			done = true;
 	}
 }
 

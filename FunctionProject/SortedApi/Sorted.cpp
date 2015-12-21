@@ -81,6 +81,43 @@ template <typename T> void selection_sort(T array[], int size) {
 	}
 }
 
+// Быстрая сортировка
+void shaker_sort(int size) {
+	for (int left_idx = 0, right_idx = size - 1; left_idx < right_idx;) {
+		for (int idx = left_idx; idx < right_idx; idx++) {
+			if (mass[idx + 1] < mass[idx]) {
+				swap(mass[idx], mass[idx + 1]);
+			}
+		}
+		right_idx--;
+
+		for (int idx = right_idx; idx > left_idx; idx--) {
+			if (mass[idx - 1] >  mass[idx]) {
+				swap(mass[idx - 1], mass[idx]);
+			}
+		}
+		left_idx++;
+	}
+}
+
+template <typename T> void shaker_sort(T array[], int size) {
+	for (int left_idx = 0, right_idx = size - 1; left_idx < right_idx;) {
+		for (int idx = left_idx; idx < right_idx; idx++) {
+			if (array[idx + 1] < array[idx]) {
+				swap(array[idx], array[idx + 1]);
+			}
+		}
+		right_idx--;
+
+		for (int idx = right_idx; idx > left_idx; idx--) {
+			if (array[idx - 1] >  array[idx]) {
+				swap(array[idx - 1], array[idx]);
+			}
+		}
+		left_idx++;
+	}
+}
+
 template <typename T> void swap(T &A, T &B) {
 	T a = A;
 	A = B;

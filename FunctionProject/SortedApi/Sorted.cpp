@@ -2,6 +2,7 @@
 
 extern int mass[100];
 
+// Пузырьковая сортировка
 void bubble_sort(int size) {
 	for (int i = 0; i < size - 1; i++) {
 		for (int j = 0; j < size - i - 1; j++) {
@@ -26,6 +27,7 @@ template <typename T> void bubble_sort(T array[], int size) {
 	}
 }
 
+// Сортировка вставками
 void paste_sort(int size) {
 	for (int j = 1; j < size - 1; j++) {
 		int key = mass[j];
@@ -48,6 +50,7 @@ template <typename T> void paste_sort(T array[], int size) {
 	}
 }
 
+// Сортировка выбором
 void selection_sort(int size) {
 	for (int idx_i = 0; idx_i < size - 1; idx_i++) {
 		int min_idx = idx_i;

@@ -2,49 +2,34 @@
 //
 
 #include "stdafx.h"
-#include <stdio.h>
-#include <stdlib.h>
+
+int sort_array[100];
 
 #define min(A, B) (A > B) ? (B) : (A); 
 
-inline int Max(int A, int B) {
+int inline Max(int A, int B) {
 	if (A > B) return A;
 	return B;
 }
 
-extern int mass[100];
-extern int N;
-
-void StartInicializeMass() {
-	srand(mass[0]);
-	extern int i;
-	for (i = 11; i < N; i++) {
-		mass[i] = (unsigned char)rand();
-	}
-}
-
 int mass[100] = { 10, 45, 14, 32, 5, 15, 11, 69, 78, 12, 45 };
+
 int i, N = sizeof(mass) / sizeof(int);
 
 static int sum = mass[0];
 
-int Sum(int A) {
-	sum += A;
-	return sum;
-}
+void StartInicializeMass();
 
-void printMass() {
-	printf("\n");
-	for (i = 0; i < N; ++i) {
-		printf("%8d", mass[i]);
-		if (!(i % 9)) printf("\n");
-	}
-}
+int Sum(int A);
 
-int _tmain(int argc, _TCHAR* argv[])
+void printMass();
+
+	int _tmain(int argc, _TCHAR* argv[])
 {
 	StartInicializeMass();
 
+	selection_sort(20);
+	
 	printMass();
 
 	int k = 0;
@@ -66,7 +51,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		max = Max(max, mass[i]);
 		Sum(mass[i]);
 	}
-	float sr_s = sum / N, sr_n = sum / (N - 1);
+	float sr_s = float(sum / N), sr_n = float(sum / (N - 1));
 	printf("\nmin = %8d,\tmax = %8d,\tsum = %8d\nsr_s = %8.4f,\tsr_n = %8.4f\n", min, max, sum, sr_s, sr_n);
 
 	system("pause");
@@ -74,3 +59,23 @@ int _tmain(int argc, _TCHAR* argv[])
 	return 0;
 }
 
+void StartInicializeMass() {
+	srand(mass[0]);
+	extern int i;
+	for (i = 11; i < N; i++) {
+		mass[i] = (unsigned char)rand();
+	}
+}
+
+int Sum(int A) {
+	sum += A;
+	return sum;
+}
+
+void printMass() {
+	printf("\n");
+	for (i = 0; i < N; ++i) {
+		printf("%8d", mass[i]);
+		if (!(i % 9)) printf("\n");
+	}
+}

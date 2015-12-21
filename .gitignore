@@ -35,3 +35,14 @@
 *.log
 *.idb
 BooleanProject/Debug/vc120.pdb
+*.pdb
+*.user
+*.ipch
+*.sdf
+*.ipch
+*.suo
+Project_Lesson.sdf
+*.opensdf
+ipch/functionproject-2acb9c92/functionproject-816c5d89.ipch
+*.pdb
+Debug/FunctionProject.pdb

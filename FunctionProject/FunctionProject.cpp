@@ -27,8 +27,6 @@ void printMass();
 	int _tmain(int argc, _TCHAR* argv[])
 {
 	StartInicializeMass();
-
-	bubble_sort(20);
 	
 	printMass();
 

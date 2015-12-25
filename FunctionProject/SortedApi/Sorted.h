@@ -2,7 +2,7 @@ void bubble_sort(int size);
 
 template <typename T> void bubble_sort(T array[], int size);
 
-void heapsort(int size)
+void heapsort(int size);
 
 template <typename T> void heapsort(T array[], int size);
 

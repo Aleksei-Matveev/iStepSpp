@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include <stdafx.h>
 
 extern int mass[100];
 
@@ -150,7 +150,7 @@ void shift_down(int i, int j) {
 	while ((i * 2 + 1 < j) && (!done)) {
 		if (i * 2 + 1 == j - 1)
 			maxChild = i * 2 + 1;
-		else if (a[i * 2 + 1] > a[i * 2 + 2])
+		else if (mass[i * 2 + 1] > mass[i * 2 + 2])
 			maxChild = i * 2 + 1;
 		else
 			maxChild = i * 2 + 2;
@@ -171,7 +171,7 @@ template <typename T> void shift_down(T array[], int i, int j) {
 	while ((i * 2 + 1 < j) && (!done)) {
 		if (i * 2 + 1 == j - 1)
 			maxChild = i * 2 + 1;
-		else if (a[i * 2 + 1] > a[i * 2 + 2])
+		else if (array[i * 2 + 1] > array[i * 2 + 2])
 			maxChild = i * 2 + 1;
 		else
 			maxChild = i * 2 + 2;

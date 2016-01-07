@@ -5,12 +5,9 @@
 
 int sort_array[100];
 
-#define min(A, B) (A > B) ? (B) : (A); 
+template <typename T, typename R> T Min(T A, R B);
 
-int inline Max(int A, int B) {
-	if (A > B) return A;
-	return B;
-}
+template <class T, class R> T Max(T A, R B);
 
 int mass[100] = { 10, 45, 14, 32, 5, 15, 11, 69, 78, 12, 45 };
 
@@ -20,14 +17,14 @@ static int sum = mass[0];
 
 void StartInicializeMass();
 
-int Sum(int A);
+template <typename T> T Sum(T A);
 
 void printMass();
 
-	int _tmain(int argc, _TCHAR* argv[])
+int _tmain(int argc, _TCHAR* argv[])
 {
 	StartInicializeMass();
-	
+
 	printMass();
 
 	int k = 0;
@@ -45,7 +42,7 @@ void printMass();
 
 	int min = mass[0], max = mass[0];
 	for (i = 1; i < N; i++) {
-		min = min(min, mass[i]);
+		min = Min(min, mass[i]);
 		max = Max(max, mass[i]);
 		Sum(mass[i]);
 	}
@@ -57,6 +54,15 @@ void printMass();
 	return 0;
 }
 
+template <typename T, typename R> T Min(T A, R B) {
+	return (A > B) ? (B) : (A);
+}
+
+template <class T, class R> T Max(T A, R B) {
+	return (A < B) ? (B) : (A);
+}
+
+
 void StartInicializeMass() {
 	srand(mass[0]);
 	extern int i;
@@ -65,9 +71,10 @@ void StartInicializeMass() {
 	}
 }
 
-int Sum(int A) {
-	sum += A;
-	return sum;
+template <typename T> T Sum(T A) {
+	A += sum;
+	sum = A;
+	return A;
 }
 
 void printMass() {

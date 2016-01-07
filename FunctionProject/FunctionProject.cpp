@@ -62,7 +62,6 @@ template <class T, class R> T Max(T A, R B) {
 	return (A < B) ? (B) : (A);
 }
 
-
 void StartInicializeMass() {
 	srand(mass[0]);
 	extern int i;
@@ -79,7 +78,7 @@ template <typename T> T Sum(T A) {
 
 void printMass() {
 	printf("\n");
-	for (i = 0; i < N; ++i) {
+	for (int i = 0; i < N; ++i) {
 		printf("%8d", mass[i]);
 		if (!(i % 9)) printf("\n");
 	}

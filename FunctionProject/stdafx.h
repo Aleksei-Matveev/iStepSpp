@@ -10,8 +10,10 @@
 #include <stdio.h>
 #include <tchar.h>
 #include <stdlib.h>
+#include <locale>
 
 
 // TODO: Установите здесь ссылки на дополнительные заголовки, требующиеся для программы
 
 #include "Sorted.h"
+#include "OliveSalad.h"

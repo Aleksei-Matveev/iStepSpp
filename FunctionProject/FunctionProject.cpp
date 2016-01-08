@@ -3,6 +3,13 @@
 
 #include "stdafx.h"
 
+float masOlive[34] = {
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0
+};
+
 int sort_array[100];
 
 template <typename T, typename R> T Min(T A, R B);
@@ -23,6 +30,8 @@ void printMass();
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	setlocale(LC_ALL, ".1251");
+	printf("%d\n", CurrencyOliveSalad());
 	StartInicializeMass();
 
 	printMass();

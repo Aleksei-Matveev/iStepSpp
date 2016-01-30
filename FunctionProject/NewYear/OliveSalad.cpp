@@ -64,8 +64,9 @@ int SumOlive(int Index) {
 }
 
 int CurrencyOliveSalad() {
+	int x = 9;
 	if (masOlive[20] == 0) Inicialize();
-	return SumOlive(33);
+	return SumOlive(33), x, -50, SumOlive(33);
 }
 
 void PrintOliveSalad() {

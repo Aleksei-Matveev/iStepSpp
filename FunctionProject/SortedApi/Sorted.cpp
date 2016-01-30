@@ -2,6 +2,26 @@
 
 extern int mass[100];
 
+// Двоичный поиск
+int BinarySearch(int Lb, int Ub, int Key)
+{
+	while (1) {
+		int M = (Lb + Ub) / 2;
+		if (Key < mass[M]) {
+			Ub = M - 1;
+		} else {
+			if (Key > mass[M]) {
+				Lb = M + 1;
+			} else {
+				return M;
+			}
+		}
+		if (Lb > Ub) {
+			return -1;
+		}
+	}
+}
+
 // Пузырьковая сортировка
 void bubble_sort(int size) {
 	for (int i = 0; i < size - 1; i++) {

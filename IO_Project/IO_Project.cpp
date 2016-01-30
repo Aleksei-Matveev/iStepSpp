@@ -78,6 +78,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	printf("The number of fields input is %d\n", result);
 	printf("The contents are: %d %f %c\n", i, fp, c);
 
+	float df1;
+	scanf_s("%f", &df1);
+	printf("%d", df1);
+
 	system("pause");
 	return 0;
 }

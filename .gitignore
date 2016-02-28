@@ -70,3 +70,4 @@ Debug/FunctionProject.pdb
 *.ipch
 IO_Project/Debug/vc120.pdb
 *.idb
+*.ipch

@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MassiveProject", "MassivePr
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FunctionProject", "FunctionProject\FunctionProject.vcxproj", "{EAE2B21B-A4A8-41F3-9544-33E2AD1F08A5}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HouseMassive", "HouseMassive\HouseMassive.vcxproj", "{8A368840-0FDB-4918-83D6-66D15E931972}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -39,6 +41,10 @@ Global
 		{EAE2B21B-A4A8-41F3-9544-33E2AD1F08A5}.Debug|Win32.Build.0 = Debug|Win32
 		{EAE2B21B-A4A8-41F3-9544-33E2AD1F08A5}.Release|Win32.ActiveCfg = Release|Win32
 		{EAE2B21B-A4A8-41F3-9544-33E2AD1F08A5}.Release|Win32.Build.0 = Release|Win32
+		{8A368840-0FDB-4918-83D6-66D15E931972}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8A368840-0FDB-4918-83D6-66D15E931972}.Debug|Win32.Build.0 = Debug|Win32
+		{8A368840-0FDB-4918-83D6-66D15E931972}.Release|Win32.ActiveCfg = Release|Win32
+		{8A368840-0FDB-4918-83D6-66D15E931972}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

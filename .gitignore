@@ -66,3 +66,7 @@ Project_Lesson.v12.suo
 Project_Lesson.sdf
 *.pdb
 Debug/FunctionProject.pdb
+*.ipch
+*.ipch
+IO_Project/Debug/vc120.pdb
+*.idb

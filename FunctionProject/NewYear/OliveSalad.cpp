@@ -19,6 +19,20 @@ void Inicialize() {
 	masOlive[13] = masOlive[33] = 15500;	// стоимость за упаковку
 }
 
+int Inicialize(OliveSalad *salad) {
+	/*
+	salad->snag = 0.25;
+	salad->potato = 0.4;
+	salad->carrot = 0.08;
+	salad->eggs = 4;
+	salad->cuke = 4;
+	salad->pea = 1;
+	salad->mayo = 1;
+	*/
+	*salad = olveSaladRecipe;
+	return 0;
+}
+
 int SumOlive(int Index) {
 	static float sumOlive = 0;
 	register int sum, k;

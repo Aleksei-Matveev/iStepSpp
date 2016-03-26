@@ -12,6 +12,6 @@
 #include <malloc.h>
 #include <tchar.h>
 
-
-
 // TODO: Установите здесь ссылки на дополнительные заголовки, требующиеся для программы
+
+#include "memory_mass.h"

@@ -3,9 +3,52 @@
 
 #include "stdafx.h"
 
-int *mass;
+int(**func)(int*, int*);
+
+void primer();
+
+int *compare__(int *mass1, int* &mass2, int &size, int(__cdecl *func)(int*, int*)) {
+	return ((size == 0) || func(mass1, mass2)) ? ((--size <= 0) ? (NULL) : (compare__(mass1, ++mass2, size, func))) : (mass2);
+}
+
+template <typename T>
+T compare_(T mass1, T &mass2, int &size) {
+	return compare__(mass1, mass2, size, func[0]);
+}
 
 int _tmain(int argc, _TCHAR* argv[]) {
+	void **buffer = __c_mass__((void*)1, 3);
+	func = new (int(*[1])(int*, int*));
+	__init_compare_ptr(func, 1);
+	buffer[0] = __calloc__((int)10, 1000000);
+	buffer[1] = __calloc__((int)10, 2000000);
+	buffer[2] = __calloc__((int)10, 1000000);;
+	if (buffer++ && buffer--) {
+		__init(*buffer, 4);
+		__init(*(buffer + 1), 4);
+		int **ptr = __c_mass__((int*)1, 2);
+		ptr[0] = (int*)buffer[0];
+		int *ptrbuff = (int*)buffer[2];
+		for (int i = 0; i < 1000; i++, ptr[0]++) {
+			int size = 2000;
+			ptr[1] = (int*)buffer[1];
+			if (compare_(ptr[0], ptr[1], size)) {
+				*ptrbuff = *ptr[1];
+				ptrbuff++;
+			}
+		}
+		buffer[2] = realloc(buffer[2], ptrbuff - (int*)buffer[2]);
+		printf("%8d\n", (!buffer[2]) ? (0) : (_msize(buffer[2])));
+	}
+	system("pause");
+	delete[] buffer;
+	delete[] func;
+	return 0;
+}
+
+int *mass;
+
+void primer() {
 	void *ptr = calloc(256, 4);
 	printf("calloc - Ok%16d\n", _msize(ptr));
 	if (ptr) {
@@ -52,6 +95,4 @@ int _tmain(int argc, _TCHAR* argv[]) {
 		system("pause");
 		free(ptr);
 	}
-	return 0;
 }
-

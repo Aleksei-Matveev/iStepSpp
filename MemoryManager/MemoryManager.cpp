@@ -39,7 +39,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 			int size = 2000;
 			ptr[1] = (int*)buffer[1];
 			if (compare_(ptr[0], ptr[1], size)) {
-#if BUF_COUNT <=50
+#if BUFF_COUNT <=50
 				buffer[2] = realloc(buffer[2], (buffer[2]) ? (_msize(buffer[2]) + 4) : (4));
 				static int *ptrbuff = (int*)buffer[2];
 #endif

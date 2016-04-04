@@ -16,6 +16,7 @@ T compare_(T mass1, T &mass2, int &size, int(__cdecl *func)(int*, int*)) {
 #if BUFF_COUNT > 2000
 	int *_mass1 = static_cast<int*>(mass1), *_mass2 = static_cast<int*>(mass2);
 	for (; size < 0; size--, _mass2++) if (!func(_mass1, _mass2)) return mass2 = static_cast<T>(_mass2);
+	return NULL;
 #else
 	return compare__(mass1, mass2, size, func);
 #endif

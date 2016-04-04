@@ -7,7 +7,7 @@
 	3. Expand the C/C++ node.
 	4. Select the Language property page.
 	5. Modify the OpenMP Support property.
-	6. Убрать комментарий со строки #define _USE_OMP 4 в stdafx.h
+	6. Подставить свое значение в строке #define _USE_OMP 1 в stdafx.h
 	*/
 void __init(void *mass, int size_el) {
 	srand((unsigned int)mass);

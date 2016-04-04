@@ -5,7 +5,9 @@
 
 #pragma once
 
-#define BUFF_COUNT (0x01000000)
+#define BUFF_COUNT 0x01000000
+
+// #define _USE_OMP 4
 
 enum E_SIMPLE {
 	zero = 0x00000001,
@@ -21,6 +23,7 @@ enum E_SIMPLE {
 #include <stdlib.h>
 #include <malloc.h>
 #include <tchar.h>
+#include <omp.h>
 
 // TODO: Установите здесь ссылки на дополнительные заголовки, требующиеся для программы
 

@@ -7,7 +7,7 @@
 
 #define BUFF_COUNT 0x01000000
 
-// #define _USE_OMP 4
+#define _USE_OMP 4	// ”казать свое количство €дер
 
 enum E_SIMPLE {
 	zero = 0x00000001,

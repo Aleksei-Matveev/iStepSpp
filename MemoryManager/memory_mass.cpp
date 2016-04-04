@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#ifdef _USE_OMP
+#if _USE_OMP > 1
 /*
 	1. Open the project's Property Pages dialog box.
 	2. Expand the Configuration Properties node.
@@ -8,7 +8,7 @@
 	4. Select the Language property page.
 	5. Modify the OpenMP Support property.
 	6. Убрать комментарий со строки #define _USE_OMP 4 в stdafx.h
-*/
+	*/
 void __init(void *mass, int size_el) {
 	srand((unsigned int)mass);
 	omp_set_num_threads(_USE_OMP);
@@ -41,7 +41,8 @@ int __compare_mod_int(int *A, int *B) {
 	while (*ptr) {
 		if (!**ptr) {
 			res |= zero << lh;
-		} else if (**ptr > 0) res |= positive << lh;
+		}
+		else if (**ptr > 0) res |= positive << lh;
 		else res |= negative << lh;
 		if (**ptr % 2) res |= odd << lh;
 		else res |= even << lh;

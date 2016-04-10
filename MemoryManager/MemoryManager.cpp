@@ -22,9 +22,11 @@ T compare_(T mass1, T &mass2, int &size, int(__cdecl *func)(int*, int*)) {
 #endif
 }
 
+#define ptrFunc int(*)(int*, int*)
+
 int _tmain(int argc, _TCHAR* argv[]) {
 	void **buffer = __c_mass__((void*)1, 3);
-	func = new (int(*[1])(int*, int*));
+	func = __c_mass__((ptrFunc)11, 1);
 	__init_compare_ptr(func, 1);
 	buffer[0] = __calloc__((int)10, BUFF_COUNT);
 	buffer[1] = __calloc__((int)10, BUFF_COUNT << 1);

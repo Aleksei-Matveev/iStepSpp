@@ -9,6 +9,8 @@
 
 #define _USE_OMP 1	// ”казать свое количество €дер - при 1 многопоточность отключена
 
+#define ptrFunc int(*)(int*, int*)
+
 enum E_SIMPLE {
 	zero = 0x00000001,
 	positive = 0x00000002,

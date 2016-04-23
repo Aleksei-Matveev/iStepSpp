@@ -1,73 +1,58 @@
-# Object files
+# Compiled Object files
+*.slo
+*.lo
 *.o
-*.ko
 *.obj
-*.elf
 
 # Precompiled Headers
 *.gch
 *.pch
+*.ilk
+*.idb
+*.pdb
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
+# Compiled Dynamic libraries
 *.so
-*.so.*
 *.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
 
 # Executables
 *.exe
 *.out
 *.app
-*.i*86
-*.x86_64
-*.hex
 
-# Debug files
-*.dSYM/
-*.tlog
-*.tlog
-*.log
-*.idb
-BooleanProject/Debug/vc120.pdb
-*.pdb
+# Projects
+*.sln
+*.sdf
+*.suo
+*.vcxproj
 *.user
-*.ipch
-*.sdf
-*.ipch
-*.suo
-Project_Lesson.sdf
+*.filters
 *.opensdf
-ipch/functionproject-2acb9c92/functionproject-816c5d89.ipch
-*.pdb
-Debug/FunctionProject.pdb
-*.suo
-Project_Lesson.v12.suo
-*.ipch
-ipch/functionproject-2acb9c92/functionproject-816c5d89.ipch
-*.pdb
-Debug/FunctionProject.pdb
-*.ilk
-Debug/FunctionProject.ilk
-*.suo
-Project_Lesson.sdf
-*.pdb
-Debug/FunctionProject.ilk
-*.sdf
-Project_Lesson.v12.suo
-*.suo
-Project_Lesson.v12.suo
-*.ipch
-Project_Lesson.sdf
-*.pdb
-Debug/FunctionProject.pdb
-*.ipch
-*.ipch
-IO_Project/Debug/vc120.pdb
-*.idb
-*.ipch
+*.dev
+*.layout
+*.win
+.project
+.cproject
+*.cbp
+
+# Logs
+*.log
+*.tlog
+*.lastbuildstate
+
+#Other
+*.db
+*.json
+/.vscode/
+/nbproject/
+*.depend

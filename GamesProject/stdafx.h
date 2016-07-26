@@ -1,6 +1,8 @@
 #pragma once
 
+#ifdef _WIN
 #include "targetver.h"
+#endif
 
 #include <iostream>
 #include <iomanip>

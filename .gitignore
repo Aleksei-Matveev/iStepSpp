@@ -10,6 +10,7 @@
 *.ilk
 *.idb
 *.pdb
+*.ipch
 
 # Compiled Dynamic libraries
 *.so
@@ -29,6 +30,7 @@
 *.exe
 *.out
 *.app
+*.com
 
 # Projects
 *.sln
@@ -44,6 +46,7 @@
 .project
 .cproject
 *.cbp
+*.opendb
 
 # Logs
 *.log
@@ -56,3 +59,4 @@
 /.vscode/
 /nbproject/
 *.depend
+/.vs/

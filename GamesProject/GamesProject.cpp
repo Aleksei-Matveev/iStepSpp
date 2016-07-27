@@ -236,6 +236,11 @@ int _create_table_bank(char **mass, int _size_w, int _size_h) {
     _create_table_border(mass, _size_w, _size_h);
     int _digit = 0, _money = _is_current_money();
     for ( ; _money > 0; _money /= 10, _digit++);
+	char  *ch = mass[_size_w / 2];
+	ch += (_size_h - _digit) / 2;
+	if (_itoa_s(_money, ch, _digit, 10)) return -1;
+	ch += _digit;
+	*ch = _TABLE_GROUND_C;
     return 0;
 }
 

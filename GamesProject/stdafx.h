@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef _WIN
+#ifdef WIN32
 #include "targetver.h"
 #endif
 

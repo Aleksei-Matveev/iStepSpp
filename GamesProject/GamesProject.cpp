@@ -105,8 +105,8 @@ const int _CARD_CH = 3, _CARD_BB = 4, _CARD_TR = 5, _CARD_PK = 6;       // Ко�
 const int _CARD_S[4] = { _CARD_CH, _CARD_BB, _CARD_TR, _CARD_PK };
 
 const int   _CARD_0 = 0x30, _CARD_1 = 0x31, _CARD_2 = 0x32, _CARD_3 = 0x33, _CARD_4 = 0x34,
-_CARD_5 = 0x35, _CARD_6 = 0x36, _CARD_7 = 0x37, _CARD_8 = 0x38, _CARD_9 = 0x39,
-_CARD_V = 0x78, _CARD_D = 0x84, _CARD_K = 0x8A, _CARD_T = 0x92;
+            _CARD_5 = 0x35, _CARD_6 = 0x36, _CARD_7 = 0x37, _CARD_8 = 0x38, _CARD_9 = 0x39,
+            _CARD_V = 0x78, _CARD_D = 0x84, _CARD_K = 0x8A, _CARD_T = 0x92;
 
 const int _CARD_M[13] = {
 	_CARD_2, _CARD_3, _CARD_4, _CARD_5,
@@ -116,34 +116,42 @@ const int _CARD_M[13] = {
 
 const int _CARD_W = 5, _CARD_H = 4;
 
+const int _SHIRT_CARDS = 0xB0;
+
+const int _LR_O_BORDER = 0xB3, _TB_O_BORDER = 0xC4, _LT_O_BORDER = 0xDA, _LB_O_BORDER = 0xC0, _RT_O_BORDER = 0xBF, _RB_O_BORDER = 0xD9;
+
+const int _LR_D_BORDER = 0xBA, _TB_D_BORDER = 0xCD, _LT_D_BORDER = 0xC9, _LB_D_BORDER = 0xC8, _RT_D_BORDER = 0xBB, _RB_D_BORDER = 0xBC;
+
 int mass_card[_CARD_W * _CARD_H] = {
-	218, 196, 196, 196, 191,        // Примитив закрытой карты 176 - рубашка                    ┌───┐    ┌───┐    ┌───┐
-	179, 176, 176, 176, 179,        // Позиция 6 - символ 32, позиция 8 - масть карты           │░░░│    │  ♣│    │  ♥│
-	179, 176, 176, 176, 179,        // Позиция 8 - символ _CARD_1, если достоинство карты 10    │░░░│    │7  │    │10 │
-									// позиция 9 - достоинство карты, позиция 10 - символ 32    └───┘    └───┘    └───┘
-    192, 196, 196, 196, 217 };
+	_LT_O_BORDER, _TB_O_BORDER, _TB_O_BORDER, _TB_O_BORDER, _RT_O_BORDER,           // Примитив закрытой карты 176 - рубашка                    ┌───┐    ┌───┐    ┌───┐
+	_LR_O_BORDER, _SHIRT_CARDS, _SHIRT_CARDS, _SHIRT_CARDS, _LR_O_BORDER,           // Позиция 6 - символ 32, позиция 8 - масть карты           │░░░│    │  ♣│    │  ♥│
+	_LR_O_BORDER, _SHIRT_CARDS, _SHIRT_CARDS, _SHIRT_CARDS, _LR_O_BORDER,           // Позиция 8 - символ _CARD_1, если достоинство карты 10    │░░░│    │7  │    │10 │
+                                                                                    // позиция 9 - достоинство карты, позиция 10 - символ 32    └───┘    └───┘    └───┘
+    _LB_O_BORDER, _TB_O_BORDER, _TB_O_BORDER, _TB_O_BORDER, _RB_O_BORDER };
 
 int mass_card_s[_CARD_W * _CARD_H] = {
-	201, 205, 205, 205, 187,        // Примитив закрытой выделенной карты
-	186, 176, 176, 176, 186,
-	186, 176, 176, 176, 186,
-	200, 205, 205, 205, 188 };
+	_LT_D_BORDER, _TB_D_BORDER, _TB_D_BORDER, _TB_D_BORDER, _RT_D_BORDER,           // Примитив закрытой выделенной карты
+	_LR_D_BORDER, _SHIRT_CARDS, _SHIRT_CARDS, _SHIRT_CARDS, _LR_D_BORDER,
+	_LR_D_BORDER, _SHIRT_CARDS, _SHIRT_CARDS, _SHIRT_CARDS, _LR_D_BORDER,
+	_LB_D_BORDER, _TB_D_BORDER, _TB_D_BORDER, _TB_D_BORDER, _RB_D_BORDER };
+
+const int _COUNT_USER_MACHINE = 1, _MAX_USER_MACHINE = 6, _ROW_USERS = 2;
 
 const int _COUNT_PACK = 4, _COUNT_CARD = 52;
 
 const int _TABLE_W = 60, _TABLE_H = 20;
 
-const int _TABLE_USER_W = 20, _TABLE_USER_H = 5;
+const int _TABLE_USER_W = _TABLE_W / _MAX_USER_MACHINE * _ROW_USERS, _TABLE_USER_H = _TABLE_H / 4;
 
-const int _TABLE_MENU_W = 60, _TABLE_MENU_H = 5;
+const int _TABLE_USER_BANK_W = _TABLE_USER_W / 2 - 2, _TABLE_USER_BANK_H = _TABLE_USER_H - 2;
 
-const int _TABLE_CROUPIER_W = 20, _TABLE_CROUPIER_H = 5;
+const int _TABLE_MENU_W = _TABLE_W, _TABLE_MENU_H =  _TABLE_H / 4;
 
-const int _TABLE_POLE_W = 40, _TABLE_POLE_H = 5;
+const int _TABLE_CROUPIER_W = _TABLE_W / 3, _TABLE_CROUPIER_H =  _TABLE_H / 4;
+
+const int _TABLE_POLE_W = _TABLE_W / 3 * 2, _TABLE_POLE_H =  _TABLE_H / 4;
 
 const char _TABLE_GROUND_C = 0x20;
-
-const int _COUNT_USER_MACHINE = 1, _MAX_USER_MACHINE = 6;
 
 const int _MAX_RAUND = 5;
 
@@ -161,15 +169,19 @@ int _create_table_border(char **mass, int _size_w, int _size_h);
 
 int _create_table_users(char **mass, int _size_w, int _size_h);
 
-inline int _get_color(int _num);
+int _create_table_users_card(char **mass, int _size_w, int _size_h, int _card_count = 0, int _num = 0);
+
+inline int _get_color(int _num, char *color);
 
 int &_get_count_user();
 
 int _get_count_card_user();
 
+int _get_current_card(int _index = 1);
+
 int &_get_raund();
 
-inline int _get_value(int _num);
+inline int _get_value(int _num, char *value);
 
 int &_is_current_cardA();
 
@@ -191,7 +203,7 @@ int _set_current_user(int _id, bool _get = false);
 
 int _sorted_package(int mass[], int _count = 36, int _count_pack = 1);
 
-int _refresh_user_info(int user_id, int &cardA, int &cardB, bool &open, bool _get = false);
+int _refresh_user_info(int user_id, int cardA, int cardB, bool open, bool _get = false);
 
 inline int &_card_size() {
 	static int _size = 0, _back = 0;
@@ -200,13 +212,13 @@ inline int &_card_size() {
 	return _size;
 }
 
-int _create_card(char ch[4], int _row = 1) {
+int _create_card(char *ch, int _row = 1, bool _open = false, bool _select = false) {
 	if (_row < 1 || _row > _CARD_H) return -1;
 	const int row = _row - 1;
 	for (int i = 0; i < _CARD_W; i++) {
-		if (_is_select_card()) ch[i] = mass_card[row * _CARD_W + i];
+		if (_select) ch[i] = mass_card[row * _CARD_W + i];
 		else ch[i] = mass_card_s[row * _CARD_W + i];
-		if ((i > 0) && (i < _CARD_W - 1) && _is_open_card()) ch[i] = 32;
+		if ((i > 0) && (i < _CARD_W - 1) && _open) ch[i] = _TABLE_GROUND_C;
 	}
 	return 0;
 }
@@ -214,8 +226,16 @@ int _create_card(char ch[4], int _row = 1) {
 int _clear_table(char mass[_TABLE_H][_TABLE_W], int _size_w, int _size_h) {
 	if (!_create_table_border(mass, _size_w, _size_h))
 		for (int i = 1; i < _size_h - 1; i++)
-			for (int j = 1; j < _size_w - 1; j++) mass[i][j] = _TABLE_GROUND_C;
+			for (int j = 1; j < _size_w - 1; j++)
+                mass[i][j] = _TABLE_GROUND_C;
 	else return -1;
+	return 0;
+}
+
+int _clear_table(char **mass, int _size_w, int _size_h) {
+    for (int i = 1; i < _size_h - 1; i++)
+        for (int j = 1; j < _size_w - 1; j++)
+            mass[i][j] = _TABLE_GROUND_C;
 	return 0;
 }
 
@@ -227,39 +247,78 @@ int _create_table() {
 	if (!(_is_current_user() % 2)) ch += (_TABLE_USER_H + _TABLE_POLE_H) * _TABLE_W;
     ch += (_is_current_user() % 3) * _TABLE_USER_W;
     char **_mass = new char* [_TABLE_USER_H];
-    for (int i = 0; i < _TABLE_USER_H; i++, ch += _TABLE_W) _mass[i] = ch;
+    for (int i = 0; i < _TABLE_USER_H; i++, ch += _TABLE_W)
+        _mass[i] = ch;
     _create_table_users(_mass, _TABLE_USER_W, _TABLE_USER_H);
     delete[] _mass;
 }
 
 int _create_table_bank(char **mass, int _size_w, int _size_h) {
     _create_table_border(mass, _size_w, _size_h);
-    int _digit = 0, _money = _is_current_money();
-    for ( ; _money > 0; _money /= 10, _digit++);
+    int _digit = 0;
+    for (int _money = _is_current_money(); _money > 0; _money /= 10, _digit++);
 	char  *ch = mass[_size_w / 2];
 	ch += (_size_h - _digit) / 2;
-	if (_itoa_s(_money, ch, _digit, 10)) return -1;
-	ch += _digit;
-	*ch = _TABLE_GROUND_C;
+#ifdef GCC
+	if (_itoa(_is_current_money(), ch, 10)) return -1;
+#else
+	if (_itoa_s(_is_current_money(), ch, _digit, 10)) return -1;
+#endif // GCC
+	ch[_digit] = _TABLE_GROUND_C;
     return 0;
 }
 
 int _create_table_border(char mass[_TABLE_H][_TABLE_W], int _size_w, int _size_h) {
-	mass[0][0] = 0xC9, mass[0][_size_w - 1] = 0xBB, mass[_size_h - 1][0] = 0xC8, mass[_size_h - 1][_size_w - 1] = 0xBC;
-	for (int i = 1; i < _size_w - 1; i++) mass[0][i] = mass[_size_h - 1][i] = 0xCD;
-	for (int i = 1; i < _size_h - 1; i++) mass[i][0] = mass[i][_size_w - 1] = 0xBA;
+	mass[0][0] = _LT_D_BORDER, mass[0][_size_w - 1] = _RT_D_BORDER, mass[_size_h - 1][0] = _LB_D_BORDER, mass[_size_h - 1][_size_w - 1] = _RB_D_BORDER;
+	for (int i = 1; i < _size_w - 1; i++)
+        mass[0][i] = mass[_size_h - 1][i] = _TB_D_BORDER;
+	for (int i = 1; i < _size_h - 1; i++)
+        mass[i][0] = mass[i][_size_w - 1] = _LR_D_BORDER;
 	return 0;
 }
 
 int _create_table_border(char **mass, int _size_w, int _size_h) {
-	mass[0][0] = 0xC9, mass[0][_size_w - 1] = 0xBB, mass[_size_h - 1][0] = 0xC8, mass[_size_h - 1][_size_w - 1] = 0xBC;
-	for (int i = 1; i < _size_w - 1; i++) mass[0][i] = mass[_size_h - 1][i] = 0xCD;
-	for (int i = 1; i < _size_h - 1; i++) mass[i][0] = mass[i][_size_w - 1] = 0xBA;
+	mass[0][0] = _LT_O_BORDER, mass[0][_size_w - 1] = _LB_O_BORDER, mass[_size_h - 1][0] = _RT_O_BORDER, mass[_size_h - 1][_size_w - 1] = _RB_O_BORDER;
+	for (int i = 1; i < _size_w - 1; i++)
+        mass[0][i] = mass[_size_h - 1][i] = _TB_O_BORDER;
+	for (int i = 1; i < _size_h - 1; i++)
+        mass[i][0] = mass[i][_size_w - 1] = _LR_O_BORDER;
 	return 0;
 }
 
 int _create_table_users(char **mass, int _size_w, int _size_h) {
-    int _c_card = _get_count_card_user();
+    if (_create_table_border(mass, _size_w, _size_h)) return -1;
+    char *ch = &mass[0][0];
+    ch += ((_TABLE_USER_H - _TABLE_USER_BANK_H) / 2) * _TABLE_W - _TABLE_USER_BANK_W - 1;
+    char **_mass = new char* [_TABLE_USER_BANK_H];
+    for (int i = 0; i < _TABLE_USER_BANK_H; i++, ch += _TABLE_W)
+        _mass[i] = ch;
+    if (_create_table_bank(_mass, _TABLE_USER_BANK_W, _TABLE_USER_BANK_H)) {
+        delete[] _mass;
+        return -1;
+    }
+    delete[] _mass;
+    _mass = new char* [_size_h - 2];
+    for (int i = 0; i < _size_h - 2; i++)
+        _mass[i] = &mass[i + 1][1];
+    int res = _create_table_users_card(_mass, _size_w - _TABLE_USER_BANK_W - 2, _size_h - 2, _get_count_card_user());
+    delete[] _mass;
+	return res;
+}
+
+int _create_table_users_card(char **mass, int _size_w, int _size_h, int _card_count, int _num) {
+    if (_card_count < _num) return 0;
+    switch (_num) {
+    case 0:
+        _clear_table(mass, _size_w, _size_h);
+        return _create_table_users_card(mass, _size_w, _size_h, _card_count, _num + 1);
+    case 1:
+    case 2:
+        char *ch = mass[(_size_h - _CARD_H) / 2];
+        ch += (_size_w - _card_count * _CARD_W) / 2 + _CARD_W * (_num - 1);
+        for (int i = 1; i <= _CARD_H; i++, ch += _TABLE_W) _create_card(ch, i, _is_open_card());
+        return _create_table_users_card(mass, _size_w, _size_h, _card_count, _num + 1);
+    }
 	return 0;
 }
 
@@ -278,19 +337,15 @@ void _init_card(int mass[], int _count) {
 	for (int i = 0; i < _count; i++) mass[i] = i;
 }
 
-int _get_card(int _num, int &_color, int &_value) {
+int _get_card(int _num, char *_color, char *_value) {
 	if (_num >= _card_size()) return -1;
-	_color = _get_color(_num);
-	_value = _get_value(_num);
+	if (_get_color(_num, _color) && _get_value(_num, _value)) return -1;
 	return 0;
 }
 
-inline int _get_color(int _num) {
-	int _card;
-	char *ch = (char*)&_card;
-	_create_card(ch, 2);
-	ch[_CARD_W - 2] = _CARD_S[_num % _card_size()];
-	return _card;
+inline int _get_color(int _num, char *color) {
+	*color = _CARD_S[_num % _card_size()];
+	return 0;
 }
 
 int &_get_count_user() {
@@ -313,24 +368,34 @@ int &_get_count_packed() {
 	return _count;
 }
 
+int _get_current_card(int _index) {
+    switch (_index) {
+    case 1:
+        return _is_current_cardA();
+    case 2:
+        return _is_current_cardB();
+    default : {
+        return -1;
+    }
+    }
+}
+
 int &_get_raund() {
 	static int _raund = 0;
 	return _raund;
 }
 
-inline int _get_value(int _num) {
-	int _card;
-	char *ch = (char*)&_card;
-	_create_card(ch, _CARD_H - 1);
+inline int _get_value(int _num, char *value) {
 	int val = _num % (_card_size() / 4);
 	switch (val) {
 	case 4:
-		ch[1] = _CARD_1;
+		*value = _CARD_1;
+		value++;
 	default: {
-		ch[2] = _CARD_M[12 - val];
+		*value = _CARD_M[12 - val];
 	}
 	}
-	return _card;
+	return 0;
 }
 
 int &_is_cursort_card() {
@@ -429,19 +494,18 @@ int _rand_to(int _max) {
 	return rand() % _max;
 }
 
-int _refresh_user_info(int user_id, int &cardA, int &cardB, bool &open, bool _get) {
+int _refresh_user_info(int user_id, int cardA, int cardB, bool open, bool _get) {
 	if (user_id > _get_count_user()) return -1;
 	static int _user_card[_MAX_USER_MACHINE][2];
 	static bool _user_open_card[_MAX_USER_MACHINE];
-	if (_get) {
-		cardA = _user_card[user_id][0];
-		cardB = _user_card[user_id][1];
-		open = _user_open_card[user_id];
-	}
-	else {
+	if (!_get) {
 		_user_card[user_id][0] = cardA;
 		_user_card[user_id][1] = cardB;
 		_user_open_card[user_id] = open;
 	}
+    if (user_id != _is_current_user()) return user_id;
+    _is_current_cardA() = _user_card[user_id][0];
+    _is_current_cardB() = _user_card[user_id][1];
+    _is_open_card() = _user_open_card[user_id];
 	return user_id;
 }

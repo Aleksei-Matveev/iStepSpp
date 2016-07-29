@@ -68,7 +68,7 @@ int _init_pole(int mass[], int size_x, int size_y) {
 		for (int j = 1; j < 9; j++)
 			if (mass[i] != -1) {
 				int index = _get_index_pole(i, size_mass<int>(size_x, size_y), size_y, j);
-				if (index != i && mass[index] == -1) mass[i]++;
+				if (index != static_cast<int>(i) && mass[index] == -1) mass[i]++;
 			}
 	return 0;
 }
@@ -167,17 +167,27 @@ int _create_table_border(char mass[_TABLE_H][_TABLE_W], int _size_w = _TABLE_W, 
 
 int _create_table_border(char **mass, int _size_w, int _size_h);
 
+int _create_table_pole(char **mass, int _size_w, int _size_h);
+
+int _create_table_pole_card(char **mass, int _size_w, int _size_h, int _card_count = 0, int _num = 0);
+
 int _create_table_users(char **mass, int _size_w, int _size_h);
 
 int _create_table_users_card(char **mass, int _size_w, int _size_h, int _card_count = 0, int _num = 0);
+
+int _get_card(int _num, char *_color, char *_value);
 
 inline int _get_color(int _num, char *color);
 
 int &_get_count_user();
 
+int _get_count_card_pole();
+
 int _get_count_card_user();
 
 int _get_current_card(int _index = 1);
+
+int _get_pole_card(int _index);
 
 int &_get_raund();
 
@@ -193,6 +203,16 @@ int &_is_current_user();
 
 bool &_is_open_card();
 
+int &_is_pole_card_1();
+
+int &_is_pole_card_2();
+
+int &_is_pole_card_3();
+
+int &_is_pole_card_4();
+
+int &_is_pole_card_5();
+
 bool &_is_select_card();
 
 int _next_card();
@@ -200,6 +220,8 @@ int _next_card();
 int _rand_to(int _max);
 
 int _set_current_user(int _id, bool _get = false);
+
+int _set_pole_card(int _card);
 
 int _sorted_package(int mass[], int _count = 36, int _count_pack = 1);
 
@@ -221,6 +243,13 @@ int _create_card(char *ch, int _row = 1, bool _open = false, bool _select = fals
 		if ((i > 0) && (i < _CARD_W - 1) && _open) ch[i] = _TABLE_GROUND_C;
 	}
 	return 0;
+}
+
+int _create_card(char *ch, int card, int _row = 1, bool _open = false, bool _select = false) {
+	int res = _create_card(ch, _row, _open, _select);
+	if (_row == 2) return _get_color(card, ch + (_CARD_W - 2));
+	if (_row == _CARD_H - 1) return _get_value(card, ch + 1);
+	return res;
 }
 
 int _clear_table(char mass[_TABLE_H][_TABLE_W], int _size_w, int _size_h) {
@@ -251,6 +280,7 @@ int _create_table() {
         _mass[i] = ch;
     _create_table_users(_mass, _TABLE_USER_W, _TABLE_USER_H);
     delete[] _mass;
+    return 0;
 }
 
 int _create_table_bank(char **mass, int _size_w, int _size_h) {
@@ -286,6 +316,35 @@ int _create_table_border(char **mass, int _size_w, int _size_h) {
 	return 0;
 }
 
+int _create_table_pole(char **mass, int _size_w, int _size_h) {
+    if (_create_table_border(mass, _size_w, _size_h)) return -1;
+    char **_mass = new char* [_size_h - 2];
+    for (int i = 0; i < _size_h - 2; i++)
+        _mass[i] = &mass[i + 1][1];
+    int res = _create_table_pole_card(_mass, _size_w - 2, _size_h - 2, _get_count_card_pole());
+    delete[] _mass;
+	return res;
+}
+
+int _create_table_pole_card(char **mass, int _size_w, int _size_h, int _card_count, int _num) {
+    if (_card_count < _num) return 0;
+    switch (_num) {
+    case 0:
+        _clear_table(mass, _size_w, _size_h);
+        return _create_table_users_card(mass, _size_w, _size_h, _card_count, _num + 1);
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+        char *ch = mass[(_size_h - _CARD_H) / 2];
+        ch += (_size_w - _card_count * _CARD_W) / 2 + _CARD_W * (_num - 1);
+        for (int i = 1; i <= _CARD_H; i++, ch += _TABLE_W) _create_card(ch, _get_pole_card(_num), i, _is_open_card());
+        return _create_table_users_card(mass, _size_w, _size_h, _card_count, _num + 1);
+    }
+	return 0;
+}
+
 int _create_table_users(char **mass, int _size_w, int _size_h) {
     if (_create_table_border(mass, _size_w, _size_h)) return -1;
     char *ch = &mass[0][0];
@@ -314,9 +373,10 @@ int _create_table_users_card(char **mass, int _size_w, int _size_h, int _card_co
         return _create_table_users_card(mass, _size_w, _size_h, _card_count, _num + 1);
     case 1:
     case 2:
+        int& (*func[2])() = {_is_current_cardA, _is_current_cardB};
         char *ch = mass[(_size_h - _CARD_H) / 2];
         ch += (_size_w - _card_count * _CARD_W) / 2 + _CARD_W * (_num - 1);
-        for (int i = 1; i <= _CARD_H; i++, ch += _TABLE_W) _create_card(ch, i, _is_open_card());
+        for (int i = 1; i <= _CARD_H; i++, ch += _TABLE_W) _create_card(ch, func[_num - 1](), i, _is_open_card());
         return _create_table_users_card(mass, _size_w, _size_h, _card_count, _num + 1);
     }
 	return 0;
@@ -325,10 +385,10 @@ int _create_table_users_card(char **mass, int _size_w, int _size_h, int _card_co
 int _distribute() {
 	for (int i = 0; i < 2; i++)
 		for (int j = 0; j < _get_count_user(); j++) {
-			_set_current_user(i, true);
+			_set_current_user(j, true);
 			int _card = _next_card();
-			if (i = 0) _refresh_user_info(j, _card, _is_current_cardB(), _is_open_card());
-			else _refresh_user_info(j, _is_current_cardA(), _card, _is_open_card());
+			if (i) _refresh_user_info(j, _is_current_cardA(), _card, _is_open_card());
+			else _refresh_user_info(j, _card, _is_current_cardB(), _is_open_card());
 		}
 	return 0;
 }
@@ -359,6 +419,14 @@ int &_get_count_card() {
 	return _count;
 }
 
+int _get_count_card_pole() {
+    int _count = 0;
+    for (int i = 1; i <=5; i++)
+        if (_get_pole_card(i) > -1) _count++;
+        else break;
+	return _count;
+}
+
 int _get_count_card_user() {
 	return (_is_current_cardA() != -1) ? ((_is_current_cardB() != -1) ? (2) : (1)) : (0);
 }
@@ -380,6 +448,12 @@ int _get_current_card(int _index) {
     }
 }
 
+int _get_pole_card(int _index) {
+    static int& (*func[5])() = {_is_pole_card_1, _is_pole_card_2, _is_pole_card_3, _is_pole_card_4, _is_pole_card_5};
+    if (_index < 0 && _index > 4) return -1;
+    else return func[_index]();
+}
+
 int &_get_raund() {
 	static int _raund = 0;
 	return _raund;
@@ -398,7 +472,7 @@ inline int _get_value(int _num, char *value) {
 	return 0;
 }
 
-int &_is_cursort_card() {
+int &_is_cursor_card() {
 	static int _card = -1;
 	if (_card > _get_count_card() * _get_count_card()) _card = -1;
 	if (_card < 0) _sorted_package(_mass_cards, _COUNT_CARD, _COUNT_PACK);
@@ -444,13 +518,38 @@ bool &_is_open_card() {
 	return _opened;
 }
 
+int &_is_pole_card_1() {
+    static int _card = -1;
+    return _card;
+}
+
+int &_is_pole_card_2() {
+    static int _card = -1;
+    return _card;
+}
+
+int &_is_pole_card_3() {
+    static int _card = -1;
+    return _card;
+}
+
+int &_is_pole_card_4() {
+    static int _card = -1;
+    return _card;
+}
+
+int &_is_pole_card_5() {
+    static int _card = -1;
+    return _card;
+}
+
 bool &_is_select_card() {
 	static bool _selected = false;
 	return _selected;
 }
 
 int _next_card() {
-	return _mass_cards[_is_cursort_card()];
+	return _mass_cards[_is_cursor_card()];
 }
 
 int _set_current_user(int _id, bool _get) {
@@ -460,9 +559,20 @@ int _set_current_user(int _id, bool _get) {
 	else return _refresh_user_info(_is_current_user(), _is_current_cardA(), _is_current_cardB(), _is_open_card(), true);
 }
 
+int _set_pole_card(int _card) {
+    static int& (*func[5])() = {_is_pole_card_1, _is_pole_card_2, _is_pole_card_3, _is_pole_card_4, _is_pole_card_5};
+    static int& (**_curr)() = &func[0];
+    if (_curr >= &func[0] && _curr <= &func[4]) {
+        (*_curr)() = _card;
+        _curr++;
+    } else _curr = func;
+    return _card;
+}
+
 int _shift_mass(int mass[], int _count, int _pos) {
 	if (_pos >= _count) return -1;
 	for (int i = _pos; i < _count - 1; i++) mass[i] = mass[i + 1];
+	return 0;
 }
 
 void show_screen(char **mass, int _size_w, int _size_h) {

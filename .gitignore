@@ -60,3 +60,4 @@
 /nbproject/
 *.depend
 /.vs/
+*.ipch

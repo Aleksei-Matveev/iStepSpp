@@ -167,6 +167,8 @@ int _create_table_border(char mass[_TABLE_H][_TABLE_W], int _size_w = _TABLE_W, 
 
 int _create_table_border(char **mass, int _size_w, int _size_h);
 
+int _create_table_menu(char **mass, int _size_w, int _size_h);
+
 int _create_table_pole(char **mass, int _size_w, int _size_h);
 
 int _create_table_pole_card(char **mass, int _size_w, int _size_h, int _card_count = 0, int _num = 0);
@@ -280,7 +282,19 @@ int _create_table() {
         _mass[i] = ch;
     _create_table_users(_mass, _TABLE_USER_W, _TABLE_USER_H);
     delete[] _mass;
-    return 0;
+	ch = &table_mass[_TABLE_USER_H][0];
+	_mass = new char*[_TABLE_POLE_H];
+	for (int i = 0; i < _TABLE_POLE_H; i++, ch += _TABLE_W)
+		_mass[i] = ch;
+	_create_table_pole(_mass, _TABLE_POLE_W, _TABLE_POLE_H);
+	delete[] _mass;
+	ch = &table_mass[_TABLE_USER_H * 2 + _TABLE_POLE_H][0];
+	_mass = new char*[_TABLE_MENU_H];
+	for (int i = 0; i < _TABLE_MENU_H; i++, ch += _TABLE_W)
+		_mass[i] = ch;
+	_create_table_menu(_mass, _TABLE_MENU_W, _TABLE_MENU_H);
+	delete[] _mass;
+	return 0;
 }
 
 int _create_table_bank(char **mass, int _size_w, int _size_h) {
@@ -316,13 +330,23 @@ int _create_table_border(char **mass, int _size_w, int _size_h) {
 	return 0;
 }
 
+int _create_table_menu(char **mass, int _size_w, int _size_h) {
+	if (_create_table_border(mass, _size_w, _size_h)) return -1;
+	char **_mass = new char*[_size_h - 2];
+	for (int i = 0; i < _size_h - 2; i++)
+		_mass[i] = &mass[i + 1][1];
+	int res = 0;// _create_table_menu_button(_mass, _size_w - 2, _size_h - 2, _get_count_card_pole());
+	delete[] _mass;
+	return res;
+}
+
 int _create_table_pole(char **mass, int _size_w, int _size_h) {
-    if (_create_table_border(mass, _size_w, _size_h)) return -1;
-    char **_mass = new char* [_size_h - 2];
-    for (int i = 0; i < _size_h - 2; i++)
-        _mass[i] = &mass[i + 1][1];
-    int res = _create_table_pole_card(_mass, _size_w - 2, _size_h - 2, _get_count_card_pole());
-    delete[] _mass;
+	if (_create_table_border(mass, _size_w, _size_h)) return -1;
+	char **_mass = new char*[_size_h - 2];
+	for (int i = 0; i < _size_h - 2; i++)
+		_mass[i] = &mass[i + 1][1];
+	int res = _create_table_pole_card(_mass, _size_w - 2, _size_h - 2, _get_count_card_pole());
+	delete[] _mass;
 	return res;
 }
 

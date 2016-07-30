@@ -151,6 +151,8 @@ const int _TABLE_CROUPIER_W = _TABLE_W / 3, _TABLE_CROUPIER_H =  _TABLE_H / 4;
 
 const int _TABLE_POLE_W = _TABLE_W / 3 * 2, _TABLE_POLE_H =  _TABLE_H / 4;
 
+const int _MENU_BUTTON_W = 10, _MENU_BUTTON_H = 3;
+
 const char _TABLE_GROUND_C = 0x20;
 
 const int _MAX_RAUND = 5;
@@ -166,6 +168,8 @@ int _mass_cards[_COUNT_CARD * _COUNT_PACK] = { 0 };
 int _create_table_border(char mass[_TABLE_H][_TABLE_W], int _size_w = _TABLE_W, int _size_h = _TABLE_H);
 
 int _create_table_border(char **mass, int _size_w, int _size_h);
+
+int _create_table_croupier(char **mass, int _size_w, int _size_h);
 
 int _create_table_menu(char **mass, int _size_w, int _size_h);
 
@@ -277,6 +281,8 @@ int _create_table() {
 	char *ch = &table_mass[0][0];
 	if (!(_is_current_user() % 2)) ch += (_TABLE_USER_H + _TABLE_POLE_H) * _TABLE_W;
     ch += (_is_current_user() % 3) * _TABLE_USER_W;
+#ifdef _CALLBACK
+#else
     char **_mass = new char* [_TABLE_USER_H];
     for (int i = 0; i < _TABLE_USER_H; i++, ch += _TABLE_W)
         _mass[i] = ch;
@@ -294,6 +300,13 @@ int _create_table() {
 		_mass[i] = ch;
 	_create_table_menu(_mass, _TABLE_MENU_W, _TABLE_MENU_H);
 	delete[] _mass;
+	ch = &table_mass[_TABLE_USER_H][_TABLE_POLE_W];
+	_mass = new char*[_TABLE_CROUPIER_H];
+	for (int i = 0; i < _TABLE_CROUPIER_H; i++, ch += _TABLE_W)
+		_mass[i] = ch;
+	_create_table_croupier(_mass, _TABLE_CROUPIER_W, _TABLE_CROUPIER_H);
+	delete[] _mass;
+#endif // _CALLBACK
 	return 0;
 }
 
@@ -328,6 +341,16 @@ int _create_table_border(char **mass, int _size_w, int _size_h) {
 	for (int i = 1; i < _size_h - 1; i++)
         mass[i][0] = mass[i][_size_w - 1] = _LR_O_BORDER;
 	return 0;
+}
+
+int _create_table_croupier(char **mass, int _size_w, int _size_h) {
+	if (_create_table_border(mass, _size_w, _size_h)) return -1;
+	char **_mass = new char*[_size_h - 2];
+	for (int i = 0; i < _size_h - 2; i++)
+		_mass[i] = &mass[i + 1][1];
+	int res = 0;// _create_table_menu_button(_mass, _size_w - 2, _size_h - 2, _get_count_card_pole());
+	delete[] _mass;
+	return res;
 }
 
 int _create_table_menu(char **mass, int _size_w, int _size_h) {

@@ -10,11 +10,6 @@ using namespace std;
 
 int main() {
 	setlocale(LC_ALL, ".866");
-	_init_pole(mass, 8, 8, 20);
-	printf("%c%c%c%c%c%c%c%c\n", 201, 205, 205, 205, 205, 205, 205, 187);
-	printf("%c%5d%c%c\n", 186, 1000, 32, 186);
-	printf("%c%c%c%c%c%c%c%c\n", 200, 205, 205, 205, 205, 205, 205, 188);
-	//system("cls");
 	return 0;
 }
 
@@ -153,6 +148,8 @@ const int _TABLE_POLE_W = _TABLE_W / 3 * 2, _TABLE_POLE_H =  _TABLE_H / 4;
 
 const int _MENU_BUTTON_W = 10, _MENU_BUTTON_H = 3;
 
+const int _COUNT_MENU_BUTTON = _TABLE_MENU_W / _MENU_BUTTON_W;
+
 const char _TABLE_GROUND_C = 0x20;
 
 const int _MAX_RAUND = 5;
@@ -172,6 +169,8 @@ int _create_table_border(char **mass, int _size_w, int _size_h);
 int _create_table_croupier(char **mass, int _size_w, int _size_h);
 
 int _create_table_menu(char **mass, int _size_w, int _size_h);
+
+int _create_table_menu_button(char **mass, int _size_w, int _size_h, int _button_count = _COUNT_MENU_BUTTON, int _num = 0);
 
 int _create_table_pole(char **mass, int _size_w, int _size_h);
 
@@ -273,6 +272,10 @@ int _clear_table(char **mass, int _size_w, int _size_h) {
             mass[i][j] = _TABLE_GROUND_C;
 	return 0;
 }
+int _create_menu_button(char **mass, int _size_w, int _size_h, int _num) {
+    _create_table_border(mass, _size_w, _size_h);
+    return 0;
+}
 
 int _create_table() {
 	static char table_mass[_TABLE_H][_TABLE_W] = { 0 };
@@ -358,9 +361,29 @@ int _create_table_menu(char **mass, int _size_w, int _size_h) {
 	char **_mass = new char*[_size_h - 2];
 	for (int i = 0; i < _size_h - 2; i++)
 		_mass[i] = &mass[i + 1][1];
-	int res = 0;// _create_table_menu_button(_mass, _size_w - 2, _size_h - 2, _get_count_card_pole());
+	int res = _create_table_menu_button(_mass, _size_w - 2, _size_h - 2, _get_count_card_pole());
 	delete[] _mass;
 	return res;
+}
+
+int _create_table_menu_button(char **mass, int _size_w, int _size_h, int _button_count, int _num) {
+    if (_button_count < _num) return 0;
+    switch (_num) {
+    case 0:
+        _clear_table(mass, _size_w, _size_h);
+        return _create_table_menu_button(mass, _size_w, _size_h, _button_count, _num + 1);
+    default: {
+        char *ch = mass[(_size_h - _MENU_BUTTON_H) / 2];
+        ch += (_size_w - _button_count * _MENU_BUTTON_W) / 2 + _MENU_BUTTON_W * (_num - 1);
+        char **_mass = new char* [_MENU_BUTTON_H];
+        for (int i = 1; i <= _MENU_BUTTON_H; i++, ch += _TABLE_W)
+            _mass[i] = ch;
+        _create_menu_button(_mass, _MENU_BUTTON_W, _MENU_BUTTON_H, _num);
+        delete[] _mass;
+        return _create_table_menu_button(mass, _size_w, _size_h, _button_count, _num + 1);
+    }
+    }
+	return 0;
 }
 
 int _create_table_pole(char **mass, int _size_w, int _size_h) {
@@ -379,15 +402,12 @@ int _create_table_pole_card(char **mass, int _size_w, int _size_h, int _card_cou
     case 0:
         _clear_table(mass, _size_w, _size_h);
         return _create_table_users_card(mass, _size_w, _size_h, _card_count, _num + 1);
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
+    default: {
         char *ch = mass[(_size_h - _CARD_H) / 2];
         ch += (_size_w - _card_count * _CARD_W) / 2 + _CARD_W * (_num - 1);
         for (int i = 1; i <= _CARD_H; i++, ch += _TABLE_W) _create_card(ch, _get_pole_card(_num), i, _is_open_card());
         return _create_table_users_card(mass, _size_w, _size_h, _card_count, _num + 1);
+    }
     }
 	return 0;
 }

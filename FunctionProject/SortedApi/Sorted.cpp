@@ -2,7 +2,7 @@
 
 extern int mass[100];
 
-// Двоичный поиск
+// Р”РІРѕРёС‡РЅС‹Р№ РїРѕРёСЃРє
 int BinarySearch(int Lb, int Ub, int Key)
 {
 	while (1) {
@@ -22,7 +22,7 @@ int BinarySearch(int Lb, int Ub, int Key)
 	}
 }
 
-// Пузырьковая сортировка
+// РЎРѕСЂС‚РёСЂРѕРІРєР° РїСѓР·С‹СЂСЊРєРѕРј
 void bubble_sort(int size) {
 	for (int i = 0; i < size - 1; i++) {
 		for (int j = 0; j < size - i - 1; j++) {
@@ -47,7 +47,7 @@ template <typename T> void bubble_sort(T array[], int size) {
 	}
 }
 
-// Пирамидальная сортировка
+// РџРёСЂР°РјРёРґР°Р»СЊРЅР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°
 void heapsort(int size) {
 	int i;
 
@@ -72,7 +72,7 @@ template <typename T> void heapsort(T array[], int size) {
 	}
 }
 
-// Сортировка вставками
+// РЎРѕСЂС‚РёСЂРѕРІРєР° РІСЃС‚Р°РІРєР°РјРё
 void paste_sort(int size) {
 	for (int j = 1; j < size - 1; j++) {
 		int key = mass[j];
@@ -95,7 +95,7 @@ template <typename T> void paste_sort(T array[], int size) {
 	}
 }
 
-// Сортировка выбором
+// РЎРѕСЂС‚РёСЂРѕРІРєР° РІС‹Р±РѕСЂРѕРј
 void selection_sort(int size) {
 	for (int idx_i = 0; idx_i < size - 1; idx_i++) {
 		int min_idx = idx_i;
@@ -126,7 +126,7 @@ template <typename T> void selection_sort(T array[], int size) {
 	}
 }
 
-// Быстрая сортировка
+// РЎРѕСЂС‚РёСЂРѕРІРєР° РїРµСЂРµРјРµС€РёРІР°РЅРёРµРј
 void shaker_sort(int size) {
 	for (int left_idx = 0, right_idx = size - 1; left_idx < right_idx;) {
 		for (int idx = left_idx; idx < right_idx; idx++) {
